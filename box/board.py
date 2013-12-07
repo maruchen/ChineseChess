@@ -5,9 +5,10 @@ import unittest
 
 class Board(object):
     def __init__(self):
-        self.living_widgets = []
+        #self.living_widgets = []
         self.max_x = 9  # 1 - 9
         self.max_y = 10 # 1 - 10
+        self.ai = ''
         self.__InitEmptyBoard()
 
     def IsInsideChessboard(self, x, y):
@@ -82,6 +83,11 @@ class Board(object):
             y = 10
             self.__SetWidgetOn(king.King(self, x, y, 2), x, y)
         
+    def DeserializeFromJSON(self, json_object):
+        pass
+
+    def SerializeToJSON(self, json_object):
+        pass
         
     def __repr__(self):
         info = ''
@@ -115,6 +121,7 @@ class Board(object):
         source_widget.y = to_y
         self.__RemoveWidgetOn(x, y)
         self.__SetWidgetOn(source_widget, x, y)
+        return True
 
     def HasWidgetOn(self, x, y):
         return self.chessboard[y][x] != None
@@ -166,9 +173,17 @@ class TestBoard(unittest.TestCase):
         self.b.SetUp()
         print self.b
 
-    def testMovePawn(self):
+
+    def testMoveWidgetTo(self):
         self.b.SetUp()
-        print self.b
+        # 马八进七
+        self.assertTrue(self.b.MoveWidgetTo(8, 10, 7, 8))
+        # 炮二平五
+        self.assertFalse(self.b.MoveWidgetTo(8, 8, 5, 8))
+        # 炮八平五
+        self.assertTrue(self.b.MoveWidgetTo(2, 8, 5, 8))
+        pass
+
 
 if __name__ == '__main__':
     import widget
