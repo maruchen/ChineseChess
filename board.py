@@ -63,6 +63,24 @@ class Board(object):
             self.__SetWidgetOn(horse.Horse(self, x, y, 1), x, y)
             y = 10
             self.__SetWidgetOn(horse.Horse(self, x, y, 2), x, y)
+        # 象
+        for x in [3, 7]:
+            y = 1
+            self.__SetWidgetOn(bishop.Bishop(self, x, y, 1), x, y)
+            y = 10
+            self.__SetWidgetOn(bishop.Bishop(self, x, y, 2), x, y)
+        # 士
+        for x in [4, 6]:
+            y = 1
+            self.__SetWidgetOn(guard.Guard(self, x, y, 1), x, y)
+            y = 10
+            self.__SetWidgetOn(guard.Guard(self, x, y, 2), x, y)
+        # 帅
+        for x in [5]:
+            y = 1
+            self.__SetWidgetOn(king.King(self, x, y, 1), x, y)
+            y = 10
+            self.__SetWidgetOn(king.King(self, x, y, 2), x, y)
         
         
     def __repr__(self):
@@ -154,7 +172,7 @@ class TestBoard(unittest.TestCase):
 
 if __name__ == '__main__':
     import widget
-    import pawn, cannon, chariot, horse
+    import pawn, cannon, chariot, horse, bishop, guard, king
     unittest.main()
 
 
